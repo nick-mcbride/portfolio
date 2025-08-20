@@ -51,13 +51,6 @@ export const metadata: Metadata = {
 		locale: 'en_US',
 		type: 'website',
 	},
-	twitter: {
-		card: 'summary_large_image',
-		title: 'Nick McBride - Software Developer',
-		description: 'Passionate software developer creating clean, minimal, and effective digital solutions. Explore my work and development philosophy.',
-		creator: '@yourusername',
-		images: ['/og-image.jpg'],
-	},
 	robots: {
 		index: true,
 		follow: true,
