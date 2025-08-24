@@ -7,26 +7,26 @@ import Link from 'next/link';
 const projects = [
 	{
 		id: 1,
-		title: 'E-Commerce Platform',
-		description: 'A modern e-commerce platform built with Next.js and Stripe',
-		image: '/code.jpg',
+		title: 'AI Heart Disease Detection',
+		description: 'A machine learning model for detecting heart disease using patient data.',
+		image: '/code.jpg', // change to the ai graphs
 	},
 	{
 		id: 2,
-		title: 'AI Chat Application',
-		description: 'Real-time chat application powered by OpenAI',
+		title: 'Customer Segmentation Clustering',
+		description: 'A algorithm based model for customer segmentation using clustering techniques.',
 		image: '/laptop.jpg',
 	},
 	{
 		id: 3,
-		title: 'Task Management',
-		description: 'Collaborative task management tool with real-time updates',
+		title: 'Vending Machine Application', // this one sucks
+		description: 'A vending machine application with real-time inventory management',
 		image: '/code.jpg',
 	},
 	{
 		id: 4,
-		title: 'Portfolio Generator',
-		description: 'Dynamic portfolio generator for developers',
+		title: 'Fight Flight Unity Game',// little fun project
+		description: 'A simple 2D game built with Unity and .',
 		image: '/laptop.jpg',
 	},
 ];
