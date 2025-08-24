@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-	title: 'Nick McBride - Computer Scientist',
+	title: 'Nick McBride - Portfolio',
 	description:
-		'Welcome to my portfolio! I am a passionate software developer with a focus on clean, minimal, and effective solutions. I believe in the power of simplicity and thoughtful design to create impactful digital experiences.',
+		'Welcome to my portfolio! I am a Computer Science student showcasing projects in web development, AI, and software engineering.',
 	keywords: [
 		'Software Developer',
 		'Clean Code',
@@ -36,8 +36,8 @@ export const metadata: Metadata = {
 	authors: [{ name: 'Nick McBride' }],
 	creator: 'Nick McBride',
 	openGraph: {
-		title: 'Nick McBride - Software Developer Portfolio',
-		description: 'Passionate software developer creating clean, minimal, and effective digital solutions. Explore my work and development philosophy.',
+		title: 'Nick McBride - Portfolio',
+		description: 'Computer Science student showcasing projects in web development, AI, and software engineering.',
 		url: 'https://nickmcbrideportfolio.com',
 		siteName: 'Nick McBride - Portfolio',
 		images: [
