@@ -1,51 +1,65 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 export default function HeroSection() {
 	return (
 		<motion.section
 			initial={{ opacity: 0 }}
 			animate={{ opacity: 1 }}
-			transition={{ duration: 1 }}
-			className="h-screen flex items-center justify-center relative overflow-hidden"
+			transition={{ duration: 0.8 }}
+			className="relative overflow-hidden"
 		>
-			<div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 to-blue-900/20" />
-			<div className="absolute inset-0">
-				<div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(17,24,39,0.7),rgba(0,0,0,1))]" />
-			</div>
+			<div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(191,91,61,0.16),transparent_28%),radial-gradient(circle_at_top_right,rgba(23,19,17,0.1),transparent_20%)]" />
+			<div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.5),rgba(255,255,255,0.08))]" />
 
-			<div className="relative z-10 text-center">
+			<div className="relative mx-auto flex min-h-[calc(100svh-5rem)] max-w-7xl items-center px-4 py-16 md:px-6 lg:px-8">
+				<div className="max-w-4xl">
 				<motion.h1
-					initial={{ y: 50 }}
+					initial={{ y: 24, opacity: 0 }}
 					animate={{ y: 0 }}
-					transition={{ duration: 0.8, delay: 0.2 }}
-					className="text-4xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600"
+					transition={{ duration: 0.8, delay: 0.1 }}
+					className="max-w-4xl text-5xl font-semibold tracking-tight text-[var(--foreground)] md:text-7xl lg:text-8xl"
 				>
-					Nick McBride
+					Designing software with a sharp point of view.
 				</motion.h1>
 				<motion.p
-					initial={{ y: 50, opacity: 0 }}
+					initial={{ y: 24, opacity: 0 }}
 					animate={{ y: 0, opacity: 1 }}
-					transition={{ duration: 0.8, delay: 0.4 }}
-					className="text-lg md:text-xl text-gray-300 mb-8 px-4"
+					transition={{ duration: 0.8, delay: 0.2 }}
+					className="mt-6 max-w-2xl text-lg leading-8 text-[var(--muted)] md:text-xl"
 				>
-					Computer Scientist & Software Engineer
+					I am a computer science student building projects in web development, AI, and software engineering. This portfolio is meant to feel less like a template and more like a designed system.
 				</motion.p>
-			</div>
 
-			<motion.div
-				initial={{ y: 50, opacity: 0 }}
-				animate={{ y: 0, opacity: 1 }}
-				transition={{ duration: 0.8, delay: 0.6 }}
-				className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
-			>
-				<div className="animate-bounce">
-					<svg className="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-						<path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-					</svg>
+				<motion.div
+					initial={{ y: 24, opacity: 0 }}
+					animate={{ y: 0, opacity: 1 }}
+					transition={{ duration: 0.8, delay: 0.3 }}
+					className="mt-10 flex flex-col gap-4 sm:flex-row"
+				>
+					<Link href="/projects" className="inline-flex items-center justify-center rounded-full bg-[var(--foreground)] px-6 py-3 text-sm font-medium text-[var(--background)] transition-transform hover:-translate-y-0.5">
+						See projects
+					</Link>
+					<Link href="/about" className="inline-flex items-center justify-center rounded-full border border-[var(--border)] bg-[color:var(--surface)] px-6 py-3 text-sm font-medium text-[var(--foreground)] transition-colors hover:bg-[var(--accent-soft)]">
+						Read about me
+					</Link>
+				</motion.div>
+
+				<div className="mt-12 grid gap-4 sm:grid-cols-3">
+					{[
+						'Web interfaces with structure',
+						'AI and data experiments',
+						'Projects that feel polished',
+					].map((item) => (
+						<div key={item} className="rounded-3xl border border-[var(--border)] bg-[color:var(--surface)] p-5 text-sm text-[var(--muted)] backdrop-blur">
+							{item}
+						</div>
+					))}
 				</div>
-			</motion.div>
+				</div>
+			</div>
 		</motion.section>
 	);
 }

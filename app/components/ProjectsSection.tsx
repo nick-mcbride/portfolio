@@ -1,77 +1,77 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 import Link from 'next/link';
+import { projects } from '../data/projects';
 
-const projects = [
-	{
-		id: 1,
-		title: 'AI Heart Disease Detection',
-		description: 'A machine learning model for detecting heart disease using patient data.',
-		image: '/code.jpg', // change to the ai graphs
-	},
-	{
-		id: 2,
-		title: 'Customer Segmentation Clustering',
-		description: 'A algorithm based model for customer segmentation using clustering techniques.',
-		image: '/laptop.jpg',
-	},
-	{
-		id: 3,
-		title: 'Vending Machine Application', // this one sucks
-		description: 'A vending machine application with real-time inventory management',
-		image: '/code.jpg',
-	},
-	{
-		id: 4,
-		title: 'Fight Flight Unity Game',// little fun project
-		description: 'A simple 2D game built with Unity and .',
-		image: '/laptop.jpg',
-	},
-];
+type ProjectsSectionProps = {
+	showAll?: boolean;
+	compact?: boolean;
+};
 
-export default function ProjectsSection() {
+const previewProjects = projects.filter((project) => project.featured).slice(0, 3);
+
+
+export default function ProjectsSection({ showAll = false, compact = false }: ProjectsSectionProps) {
+	const displayedProjects = showAll ? projects : previewProjects;
+
 	return (
-		<section className="py-12 md:py-20 px-4 max-w-7xl mx-auto">
+		<section className={`mx-auto max-w-7xl px-4 ${compact ? 'py-10 md:py-14' : 'py-16 md:py-24'} md:px-6 lg:px-8`}>
 			<motion.h2
 				initial={{ opacity: 0, y: 20 }}
 				whileInView={{ opacity: 1, y: 0 }}
 				viewport={{ once: true }}
 				transition={{ duration: 0.6 }}
-				className="text-3xl md:text-4xl font-bold mb-8 md:mb-12 text-center"
+				className="max-w-3xl text-3xl font-semibold tracking-tight text-[var(--foreground)] md:text-5xl"
 			>
-				Featured Projects
+				{showAll ? 'Projects built to show process, polish, and range.' : 'Featured projects'}
 			</motion.h2>
 
-			<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-				{projects.map((project) => (
+			<p className="mt-4 max-w-2xl text-base leading-7 text-[var(--muted)] md:text-lg">
+				{showAll
+					? 'A wider look at the work that mixes software engineering, data exploration, and interactive build quality.'
+					: 'A curated set of projects that reflect the direction I want this portfolio to communicate.'}
+			</p>
+
+			<div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+				{displayedProjects.map((project, index) => (
 					<motion.div
-						key={project.id}
+						key={project.title}
 						initial={{ opacity: 0, y: 20 }}
 						whileInView={{ opacity: 1, y: 0 }}
 						viewport={{ once: true }}
-						transition={{ duration: 0.6, delay: project.id * 0.1 }}
-						whileHover={{ scale: 1.02 }}
-						className="group relative aspect-video bg-gradient-to-br from-purple-900/50 to-blue-900/50 rounded-xl overflow-hidden"
+						transition={{ duration: 0.55, delay: index * 0.08 }}
+						whileHover={{ y: -6 }}
+						className="group rounded-[1.75rem] border border-[var(--border)] bg-[color:var(--surface-strong)] p-6 shadow-[0_20px_50px_rgba(23,19,17,0.06)]"
 					>
-						<Image src={project.image} alt={project.title} fill className="object-cover transition-transform group-hover:scale-105" />
-						<div className="absolute inset-0 bg-black/50 group-hover:bg-black/30 transition-colors duration-300" />
-						<div className="absolute inset-0 p-6 flex flex-col justify-end">
-							<h3 className="text-xl font-bold mb-2">{project.title}</h3>
-							<p className="text-gray-300 mb-4">{project.description}</p>
-							<div className="flex gap-4">
-								<Link href="#" className="text-sm px-4 py-2 bg-white/10 hover:bg-white/20 rounded-full transition-colors">
-									View Project
-								</Link>
-								<Link href="#" className="text-sm px-4 py-2 bg-white/10 hover:bg-white/20 rounded-full transition-colors">
-									GitHub
-								</Link>
-							</div>
+						<div className="flex items-center justify-between gap-4">
+							<span className="rounded-full border border-[var(--border)] bg-[var(--accent-soft)] px-3 py-1 text-xs font-semibold uppercase tracking-[0.25em] text-[var(--foreground)]">
+								{project.category}
+							</span>
+							<span className="text-sm text-[var(--muted)]">{project.year}</span>
+						</div>
+
+						<h3 className="mt-6 text-2xl font-semibold tracking-tight text-[var(--foreground)]">{project.title}</h3>
+						<p className="mt-3 text-sm leading-7 text-[var(--muted)] md:text-base">{project.description}</p>
+
+						<div className="mt-6 flex flex-wrap gap-2">
+							{project.stack.map((item) => (
+								<span key={item} className="rounded-full border border-[var(--border)] px-3 py-1 text-xs uppercase tracking-[0.22em] text-[var(--muted)]">
+									{item}
+								</span>
+							))}
 						</div>
 					</motion.div>
 				))}
 			</div>
+
+			{showAll ? null : (
+				<div className="mt-10 flex justify-start">
+					<Link href="/projects" className="inline-flex items-center rounded-full bg-[var(--foreground)] px-5 py-3 text-sm font-medium text-[var(--background)] transition-transform hover:-translate-y-0.5">
+						View all projects
+					</Link>
+				</div>
+			)}
 		</section>
 	);
 }

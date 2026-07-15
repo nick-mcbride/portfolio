@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
+import SiteNav from './components/SiteNav';
 
 const geistSans = Geist({
 	variable: '--font-geist-sans',
@@ -13,7 +14,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-	title: 'Nick McBride - Portfolio',
+	metadataBase: new URL('https://www.nickmcbrideportfolio.com'),
+	title: {
+		default: 'Nick McBride',
+		template: '%s | Nick McBride',
+	},
 	description:
 		'Welcome to my portfolio! I am a Computer Science student showcasing projects in web development, AI, and software engineering.',
 	keywords: [
@@ -71,7 +76,12 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>{children}</body>
+			<body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+				<div className="min-h-screen text-[var(--foreground)]">
+					<SiteNav />
+					<main>{children}</main>
+				</div>
+			</body>
 		</html>
 	);
 }
